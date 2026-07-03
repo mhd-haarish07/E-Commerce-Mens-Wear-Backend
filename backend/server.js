@@ -7,7 +7,8 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+const allowedOrigins = (process.env.CLIENT_URL || "https://tn91-mens-wear.vercel.app,http://localhost:5173").split(",").map(s => s.trim());
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
 // Routes
